@@ -1,5 +1,5 @@
-import 'package:boozin/features/core/theme/app_color.dart';
-import 'package:boozin/features/core/theme/app_text_style.dart';
+import 'package:boozin/core/theme/app_color.dart';
+import 'package:boozin/core/theme/app_text_style.dart';
 import 'package:boozin/features/home/data/tile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

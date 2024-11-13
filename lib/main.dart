@@ -1,7 +1,9 @@
-import 'package:boozin/features/core/theme/app_theme.dart';
+import 'package:boozin/core/theme/app_theme.dart';
 import 'package:boozin/features/home/presentation/pages/home_view.dart';
+import 'package:boozin/features/splash/presentation/getx/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,12 +25,14 @@ class MyApp extends StatelessWidget {
       splitScreenMode: false,
       useInheritedMediaQuery: true,
       builder: (context, child) {
-        return MaterialApp(
-          title: 'Boozin App',
-          debugShowCheckedModeBanner: false,
-          theme: appThemeData[AppTheme.dark],
-          home: const HomeView(),
-        );
+        final controller = Get.put<ThemeController>(ThemeController());
+        return Obx(() {
+          return GetMaterialApp(
+              title: 'Boozin App',
+              debugShowCheckedModeBanner: false,
+              theme: appThemeData[controller.currentTheme],
+              home: const HomeView());
+        });
       },
     );
   }

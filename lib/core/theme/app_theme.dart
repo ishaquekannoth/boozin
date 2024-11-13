@@ -1,5 +1,5 @@
-import 'package:boozin/features/core/theme/app_color.dart';
-import 'package:boozin/features/core/theme/app_text_style.dart';
+import 'package:boozin/core/theme/app_color.dart';
+import 'package:boozin/core/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 enum AppTheme { light, dark }
