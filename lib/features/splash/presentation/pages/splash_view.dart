@@ -43,7 +43,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
 
     Future.delayed(const Duration(seconds: 3), () {
-      Get.off(() => const HomeView());
+      Get.to(() => const HomeView());
     });
   }
 
