@@ -1,6 +1,7 @@
 import 'package:boozin/core/theme/app_theme.dart';
+import 'package:boozin/features/home/domain/health.dart';
+import 'package:boozin/features/home/presentation/pages/home_view.dart';
 import 'package:boozin/features/splash/presentation/getx/theme_controller.dart';
-import 'package:boozin/features/splash/presentation/pages/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
               title: 'Boozin App',
               debugShowCheckedModeBanner: false,
               theme: appThemeData[controller.currentTheme],
-              home: const SplashView());
+              home: const HomeView());
         });
       },
     );

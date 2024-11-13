@@ -1,6 +1,7 @@
 import 'package:boozin/core/strings/asset_strings.dart';
 import 'package:boozin/core/theme/app_text_style.dart';
 import 'package:boozin/features/home/data/tile_model.dart';
+import 'package:boozin/features/home/domain/health.dart';
 import 'package:boozin/features/home/presentation/widgets/home_health_item.dart';
 import 'package:boozin/features/splash/presentation/getx/theme_controller.dart';
 import 'package:flutter/material.dart';
@@ -26,30 +27,36 @@ class HomeView extends StatelessWidget {
       ),
       body: Column(
         children: [
-          HomeHealthItem(
-              tileModel: TileModel(
-                  image: isDarkMode
-                      ? AssetStrings.footIconsDark
-                      : AssetStrings.footIcons,
-                  target: 15000,
-                  achievement: 7500,
-                  description: "Steps")),
+          FutureBuilder(
+            future: HealthDataService().getTodayStepCount(),
+            builder: (context, snapshot) => HomeHealthItem(
+                tileModel: TileModel(
+                    image: isDarkMode
+                        ? AssetStrings.footIconsDark
+                        : AssetStrings.footIcons,
+                    target: 15000,
+                    achievement: snapshot.data ?? 6000,
+                    description: "Steps")),
+          ),
           SizedBox(
             height: 20.h,
           ),
-          HomeHealthItem(
-              tileModel: TileModel(
-                  image: isDarkMode
-                      ? AssetStrings.calorieStringDark
-                      : AssetStrings.calorieString,
-                  target: 1000,
-                  achievement: 800,
-                  description: "Calories Burned:")),
+          FutureBuilder(
+            future: HealthDataService().getEnergyBurnedForTheDay(),
+            builder: (context, snapshot) => HomeHealthItem(
+                tileModel: TileModel(
+                    image: isDarkMode
+                        ? AssetStrings.calorieStringDark
+                        : AssetStrings.calorieString,
+                    target: 1000,
+                    achievement: snapshot.data ?? 800,
+                    description: "Calories Burned:")),
+          ),
           SizedBox(
             height: 20.h,
           ),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 controller.toggleTheme();
               },
               child: const Text("Switch theme"))
